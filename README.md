@@ -1,5 +1,6 @@
 # InDesign TableLineHelper
 
+ TableLineHelper.jsx
  日本語名:表組の罫線をいじるやつ.jsx
  
 InDesign の表組罫線操作を補助するスクリプトです。
