@@ -5,7 +5,7 @@
     TableLineHelper.jsx
     Japanese name: 表組の罫線をいじるやつ.jsx
 
-    Version: 0.9.0
+    Version: 0.9.1
     Updated: 2026-05-03
     GYAHTEI Design Laboratory
     @gyahtei_satoru
@@ -684,53 +684,61 @@
     // =========================================================
     // Edge helpers
     // =========================================================
-    function applyOneEdge(cell, edgeName, weightValue, colorObj, strokeStyleObj, setAppearance) {
-        if (!cell) return;
+function applyOneEdge(cell, edgeName, weightValue, colorObj, strokeStyleObj, setAppearance) {
+    if (!cell) return;
 
-        try {
-            if (!cell.isValid) return;
-        } catch (e) {
+    try {
+        if (!cell.isValid) return;
+    } catch (e) {
+        return;
+    }
+
+    try {
+        if (edgeName === "top") {
+            cell.topEdgeStrokeWeight = weightValue;
+
+            if (setAppearance) {
+                if (colorObj) cell.topEdgeStrokeColor = colorObj;
+                if (strokeStyleObj) cell.topEdgeStrokeType = strokeStyleObj;
+                try { cell.topEdgeStrokeTint = 100; } catch (e1) {}
+            }
             return;
         }
 
-        try {
-            if (edgeName === "top") {
-                cell.topEdgeStrokeWeight = weightValue;
-                if (setAppearance) {
-                    if (colorObj) cell.topEdgeStrokeColor = colorObj;
-                    if (strokeStyleObj) cell.topEdgeStrokeType = strokeStyleObj;
-                }
-                return;
-            }
+        if (edgeName === "bottom") {
+            cell.bottomEdgeStrokeWeight = weightValue;
 
-            if (edgeName === "bottom") {
-                cell.bottomEdgeStrokeWeight = weightValue;
-                if (setAppearance) {
-                    if (colorObj) cell.bottomEdgeStrokeColor = colorObj;
-                    if (strokeStyleObj) cell.bottomEdgeStrokeType = strokeStyleObj;
-                }
-                return;
+            if (setAppearance) {
+                if (colorObj) cell.bottomEdgeStrokeColor = colorObj;
+                if (strokeStyleObj) cell.bottomEdgeStrokeType = strokeStyleObj;
+                try { cell.bottomEdgeStrokeTint = 100; } catch (e2) {}
             }
+            return;
+        }
 
-            if (edgeName === "left") {
-                cell.leftEdgeStrokeWeight = weightValue;
-                if (setAppearance) {
-                    if (colorObj) cell.leftEdgeStrokeColor = colorObj;
-                    if (strokeStyleObj) cell.leftEdgeStrokeType = strokeStyleObj;
-                }
-                return;
-            }
+        if (edgeName === "left") {
+            cell.leftEdgeStrokeWeight = weightValue;
 
-            if (edgeName === "right") {
-                cell.rightEdgeStrokeWeight = weightValue;
-                if (setAppearance) {
-                    if (colorObj) cell.rightEdgeStrokeColor = colorObj;
-                    if (strokeStyleObj) cell.rightEdgeStrokeType = strokeStyleObj;
-                }
-                return;
+            if (setAppearance) {
+                if (colorObj) cell.leftEdgeStrokeColor = colorObj;
+                if (strokeStyleObj) cell.leftEdgeStrokeType = strokeStyleObj;
+                try { cell.leftEdgeStrokeTint = 100; } catch (e3) {}
             }
-        } catch (e2) {}
-    }
+            return;
+        }
+
+        if (edgeName === "right") {
+            cell.rightEdgeStrokeWeight = weightValue;
+
+            if (setAppearance) {
+                if (colorObj) cell.rightEdgeStrokeColor = colorObj;
+                if (strokeStyleObj) cell.rightEdgeStrokeType = strokeStyleObj;
+                try { cell.rightEdgeStrokeTint = 100; } catch (e4) {}
+            }
+            return;
+        }
+    } catch (e5) {}
+}
 
     function isTopEdge(info, selectionInfo) {
         return info.rowStart === selectionInfo.minRow;
