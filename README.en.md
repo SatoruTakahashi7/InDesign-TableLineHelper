@@ -151,5 +151,74 @@ Place `TableLineHelper.jsx` in InDesign’s `Scripts Panel` folder.
 
 Example path on macOS:
 
-```text
+For Japanese environments, the path may look like this:
+
 ~/Library/Preferences/Adobe InDesign/Version XX.X/en_US/Scripts/Scripts Panel/
+
+The Version XX.X part depends on your installed InDesign version.
+
+After placing the file, run it from InDesign’s Scripts panel.
+
+⸻
+
+Notes
+
+Please test this script on a duplicate file or in a state where you can safely undo changes.
+
+This script targets InDesign table cell borders/strokes.
+It does not target non-table objects, paragraph rules, character decorations, anchored objects, or other unrelated items.
+
+⸻
+
+About Merged Cells
+
+Inner-border operations on tables with merged cells are best-effort.
+
+In InDesign, a merged cell may visually span multiple rows or columns, but it can still be treated as a single Cell object by scripting.
+
+Because of this, the following operations may not always produce the expected result when merged cells are involved:
+
+* Apply inner borders
+* Clear inner borders
+* Inner horizontal
+* Inner vertical
+* Thick outer borders + thin inner borders
+
+When these operations are used on a selection that includes merged cells, the script displays a confirmation dialog.
+Always visually check the result after processing.
+
+⸻
+
+Limitations
+
+* This script does not guarantee behavior identical to InDesign’s standard Stroke panel.
+* Inner-border detection has limitations when complex merged cells are involved.
+* Selections spanning multiple tables are not supported.
+* Locked objects, non-editable stories, or tables on master pages may not be processed.
+* Numeric keypad shortcuts may not work in some environments.
+* Save your document before running the script, and test on duplicate data when necessary.
+
+⸻
+
+File
+
+* TableLineHelper.jsx
+
+Japanese name: 表組の罫線をいじるやつ.jsx
+
+⸻
+
+Credits
+
+Planning / testing / direction:
+GYAHTEI Design Laboratory
+@gyahtei_satoru
+
+Development support:
+ChatGPT
+
+⸻
+
+License
+
+MIT License
